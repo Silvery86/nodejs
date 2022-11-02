@@ -5,6 +5,12 @@ const PORT = process.env.PORT || 2000;
 app.listen(PORT,function () {
     console.log("Sever is running...");
 });
+//share api access all
+app.use(function (req,res,next){
+  res.header("Acccess-Control-Allow-Origin","*");
+  res.header("Acccess-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // config to connect MySQL
 const configDB = {
   host: "139.180.186.20",
