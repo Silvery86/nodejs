@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 2000;
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT,function () {
     console.log("Sever is running...");
@@ -18,7 +18,7 @@ const configDB = {
   database: "t2207e",
   user: "t2207e",
   password:"t2207e123", // mamp: "root" --- xampp:"
-    multipleStatements: true // cho phép sử dụng nhiều câu SQL trong 1 lần yêu cầu
+  multipleStatements: true // cho phép sử dụng nhiều câu SQL trong 1 lần yêu cầu
 
 };
 
@@ -26,8 +26,8 @@ const mysql = require("mysql");
 const conn = mysql.createConnection(configDB);
 
 // api list all class
-app.get("/get-classes",function (req,res){
-  const sql = "select * from classes";
+app.get("/get-g3companies",function (req,res){
+  const sql = "select * from group3_companies";
   conn.query(sql, function (err,data){
     if (err){
       res.send("404 not found");
