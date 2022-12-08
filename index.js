@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3333;
 
 app.listen(PORT,function () {
     console.log("Sever is running...");
