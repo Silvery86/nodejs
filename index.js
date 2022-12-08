@@ -7,8 +7,8 @@ app.listen(PORT,function () {
 });
 //share api access all
 app.use(function (req,res,next){
-  res.header("Acccess-Control-Allow-Origin","*");
-  res.header("Acccess-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 // config to connect MySQL
@@ -19,15 +19,14 @@ const configDB = {
   user: "t2207e",
   password:"t2207e123", // mamp: "root" --- xampp:"
   multipleStatements: true // cho phép sử dụng nhiều câu SQL trong 1 lần yêu cầu
-
 };
 
 const mysql = require("mysql");
 const conn = mysql.createConnection(configDB);
 
 // api list all class
-app.get("/get-g3companies",function (req,res){
-  const sql = "select * from group3_companies";
+app.get("/g3-insurance-company",function (req,res){
+  const sql = "select A.productName,A.insuranceRate,A.pictureproduct,B.companyName from group3_insuranceproducts A left join group3_companies B on A.companyId = B.companyId";
   conn.query(sql, function (err,data){
     if (err){
       res.send("404 not found");
