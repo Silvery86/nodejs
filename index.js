@@ -35,3 +35,18 @@ app.get("/g3-insurance-company-vehicle",function (req,res){
     }
   })
 });
+// api product theo productId
+app.get("/g3-insurance-by-productid",function (req,res){
+  const productId = req.query.productId;
+  const sql = `SELECT * FROM group3_insuranceproducts A 
+                left join group3_companies B on A.companyId = B.companyId 
+                left join group3_vehicles C on A.vehicleId = C.vehicleId 
+                WHERE productId = ${productId};`;
+  conn.query(sql, function (err,data){
+    if (err){
+      res.send("404 not found");
+    }else{
+      res.send(data);
+    }
+  })
+});
